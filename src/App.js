@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import Header from './Header';
+import Sidebar from './Sidebar';
+
 
 class App extends Component {
     render() {
         return (
           <main className = "App" >
-						<sidebar></sidebar>
+						<Sidebar/>
 						<div className='page'>
-							<Header></Header>							
+							<Header/>
 						</div>
           </main>
         );

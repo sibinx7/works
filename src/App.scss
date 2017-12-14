@@ -1,5 +1,11 @@
+body{
+  background: red;
+}
+
 .App {
   text-align: center;
+  display: -webkit-flex;
+  display: flex;
 }
 
 .App-logo {
