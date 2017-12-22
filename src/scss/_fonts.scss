@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Oxygen:700');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500');
+.font-oxygen {
+    font-family: 'Oxygen', sans-serif;
+}
+
+.font-quicksand {
+    font-family: 'Quicksand', sans-serif;
+}
+
+@for $i from 3 through 9 {
+    .font-weight-#{$i*100} {
+        font-weight: #{$i * 100};
+    }
+}

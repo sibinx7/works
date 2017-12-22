@@ -1,34 +1,72 @@
-body{
-  background: red;
+@import "./scss/_fonts";
+@import "./scss//_variables";
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    @extend .font-quicksand;
 }
 
 .App {
-  text-align: center;
-  display: -webkit-flex;
-  display: flex;
+    text-align: center;
+    display: -webkit-flex;
+    display: flex;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.page {
+    -webkit-flex: 1 0 70%;
+    flex: 1 0 70%;
+    max-width: 100%;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+
+/* HEADER */
+
+.header {
+    &__nav {
+        display: -webkit-flex;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &__toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 6px;
+        color: #fff;
+        background: $GREEN_COLOR;
+        position: relative;
+        span {
+            width: 24px;
+            height: 3px;
+            background: $WHITE_COLOR;
+            display: block;
+            position: absolute;
+        }
+    }
+    &__menu {
+        padding: 0;
+        flex: 1;
+        display: -webkit-flex;
+        display: flex;
+        justify-items: flex-end;
+        justify-content: flex-end;
+        li {
+            list-style: none;
+            display: inline-block;
+            a {
+                padding: 5px 10px;
+                text-transform: uppercase;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: bold;
+                color: #333;
+            }
+            &.acive {
+                a {}
+            }
+        }
+    }
 }
 
-.App-title {
-  font-size: 1.5em;
-}
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+/* END HEADER */
