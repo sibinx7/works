@@ -11,6 +11,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Home from './home/Home';
 import Portfolio from './home/Portfolio';
 import Services from './home/Services';
+import About from './home/About';
+
 
 /* End Pages */
 
@@ -22,8 +24,9 @@ class App extends Component {
               <Sidebar/>
               <div className='page'>
                 <Header/>
-                <div>
+                <div className="content">
                   <Route exact path='/' component={Home}/>
+                  <Route path='/about' component={About}/>
                   <Route path='/portfolio' component={Portfolio}/>
                   <Route path='/services' component={Services}/>
                 </div>
