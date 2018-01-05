@@ -1,7 +1,12 @@
 aside {
-    -webkit-flex: 0 0 30%;
-    flex: 0 0 30%;
-    max-width: 420px;
-    background: linear-gradient(to right, rgba(28, 202, 162, 1) 0%, rgba(49, 209, 129, 1) 100%);
+    -webkit-flex: 0 0 260px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 260px;
+    max-width: 260px;
+    background: #367CFF;
     height: 100vh;
+    position: fixed;
+    z-index: 15;
+    left: -260px;
 }
