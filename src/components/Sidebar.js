@@ -6,11 +6,26 @@ import FontAwesomeSolid from '@fortawesome/fontawesome-free-solid'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 
-import './scss/sidebar.scss';
+import '../scss/sidebar.scss';
+import {toggleSidebar} from '../actions/index'
 
 export default class Sidebar extends Component{
+  constructor(props){
+    super(props);
+  }
+
   render(){
-    return <aside>
+
+    const {rsidebar, closeSidebarAction} = this.props;
+
+
+    return <aside className={rsidebar? 'aside__open':''}>
+      <a href="" className="aside__close" onClick={(e) => {
+        e.preventDefault();
+        closeSidebarAction(false)
+      }}>
+        <FontAwesomeIcon icon={['fas','times-circle']}/>
+      </a>
       <div className="sidebar__categories">
         <ul className='clearfix'>
           <li>
@@ -19,7 +34,7 @@ export default class Sidebar extends Component{
             </Link>
           </li>
           <li>
-            <Link to=''>
+            <Link to='/portfolio'>
               <FontAwesomeIcon icon={['fas','building']}/>
             </Link>
           </li>
@@ -34,7 +49,7 @@ export default class Sidebar extends Component{
             </Link>
           </li>
           <li>
-            <Link to="">
+            <Link to="/services">
               <FontAwesomeIcon icon='handshake'/>
             </Link>
           </li>

@@ -2,13 +2,43 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import  '@fortawesome/fontawesome-free-brands';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-export default class Header extends Component {
+
+import {connect} from 'react-redux';
+
+import {toggleSidebar} from '../actions/index'
+
+
+const mapStateToProps =({rsidebar}) =>{
+	return {
+		rsidebar: !rsidebar
+	}
+}
+
+@connect(
+	mapStateToProps
+)
+
+class Header extends Component {
+
+  constructor(props){
+    super(props)
+    this.toggleSidebarAction = this.toggleSidebarAction.bind(this)
+  }
+
+
+  toggleSidebarAction(e){
+    e.preventDefault();
+
+    const {dispatch, rsidebar} = this.props
+		dispatch(toggleSidebar(!rsidebar))
+  }
+
   render(){
     return <header className="header">
 			<nav className="header__nav">
 				<div className="header__container">
 					<div className="header__brand">
-            <a href="" className='header__toggler'>
+            <a href="" className='header__toggler' onClick={(e) => this.toggleSidebarAction(e)}>
 							<FontAwesomeIcon icon={['fab','buromobelexperte']}/>
 						</a>
             <a href="" className='header__brand__name text-uppercase'>
@@ -47,3 +77,5 @@ export default class Header extends Component {
     </header>
   }
 }
+
+export default Header;

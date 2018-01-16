@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.scss';
-import Header from './Header';
-import Sidebar from './Sidebar';
+import Header from './components/Header';
+import CSidebar from './containers/cSidebar';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
@@ -17,11 +16,15 @@ import About from './home/About';
 /* End Pages */
 
 class App extends Component {
+  constructor(props){
+    super(props)
+  }
     render() {
+
         return (
           <Router>
             <main className = "App" >
-              <Sidebar/>
+              <CSidebar/>
               <div className='page'>
                 <Header/>
                 <div className="content">
