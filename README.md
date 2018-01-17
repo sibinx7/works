@@ -1,5 +1,13 @@
 # Work@7chip 
 
+Check this at [works.7chip.com](http://works.7chip.com)
+
+
+```
+username: clients 
+password: show_my_works
+```
+
 React Website use to display our completed Projects, Designs. Project developed using `Create React App` command line tool.
 This website use React, React Router 4, Helmet and other useful React related plugins. Some of Project, especially 
 **PSD to HTML** works are password protected.
@@ -14,6 +22,7 @@ This website use React, React Router 4, Helmet and other useful React related pl
 - Laravel 
 - Frontend Development 
 - Theme Development 
+
 
 
 

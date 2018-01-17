@@ -1,4 +1,7 @@
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
+
+
 import {toggleSidebar} from '../actions/index';
 import Sidebar from '../components/Sidebar';
 
@@ -8,7 +11,7 @@ const mapStateToProps = ({rsidebar}) => {
   return {
     rsidebar
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -16,9 +19,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(toggleSidebar(status))
     }
   }
-}
+};
 
-const CSidebar = connect(mapStateToProps,mapDispatchToProps)(Sidebar);
+const CSidebar = withRouter(connect(mapStateToProps,mapDispatchToProps)(Sidebar));
 
 
 export default CSidebar;

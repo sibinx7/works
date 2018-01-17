@@ -3,7 +3,8 @@ import './App.scss';
 import Header from './components/Header';
 import CSidebar from './containers/cSidebar';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 
 /* Pages */
 
@@ -19,8 +20,10 @@ class App extends Component {
   constructor(props){
     super(props)
   }
-    render() {
+  componentDidMount(){
 
+  }
+    render() {
         return (
           <Router>
             <main className = "App" >

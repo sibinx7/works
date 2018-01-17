@@ -30,7 +30,22 @@ class Home extends Component{
     ]
   }
 
+
+  componentDidMount(){
+    const $ = window.$;
+    $(document).ready((e)=> {
+      /* Text animation */
+      const wodryText = $('.wodry-text');
+      wodryText.Morphext({
+        animation:'flipInX',
+        separator:'|'
+      });
+      /* End Text animation */
+
+    })
+  }
   render(){
+
     return <div className="main-content home">
       <div className="home__welcome">
         <div className="container">
@@ -38,11 +53,11 @@ class Home extends Component{
           <h2>Crafted Websites</h2>
           <h1>
             We Develop
-            <b className="d-inline">
+            <span className="d-inline wodry-text">
             {
-              this.develop.map( (item, index) => <span className="" key={index}>{item}</span>)
+              this.develop.join('|')
             }
-            </b>
+            </span>
           </h1>
         </div>
       </div>
@@ -52,13 +67,24 @@ class Home extends Component{
           small and medium clients, PSD to HTML Projects, Laravel and Ruby on Rails Projects.
         </p>
       </section>
-      <section>
-        <h5 className='text-uppercase'>Skills</h5>
-        <ul className="skill__list">
-          {
-            this.skills.map( (item, index) => <li key={index}>{item}</li> )
-          }
-        </ul>
+      <section className={`home__skills`}>
+        <div className="container">
+          <h2 className='text-uppercase text-uppercase section__title'>Skills</h2>
+          <ul className="skill__list">
+            {
+              this.skills.map( (item, index) => <li key={index}>
+                <div className="wave__box">
+                  <div className="wave__common wave__one"></div>
+                  <div className="wave__common wave__two"></div>
+                  <div className="wave__common wave__three"></div>
+                  <div className="wave__text">
+                    <span>{item}</span>
+                  </div>
+                </div>
+              </li> )
+            }
+          </ul>
+        </div>
       </section>
 
     </div>
