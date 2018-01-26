@@ -1,4 +1,10 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom'
+
+import  '@fortawesome/fontawesome';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import {faEye} from '@fortawesome/fontawesome-free-solid'
+
 
 class Home extends Component{
 
@@ -65,6 +71,12 @@ class Home extends Component{
         <p>
           Thanks for visiting my portfolio website. Here I develop WordPress Website for
           small and medium clients, PSD to HTML Projects, Laravel and Ruby on Rails Projects.
+        </p>
+        <p className="text-center">
+          <Link className={`btn btn-primary btn-round`} to={`/portfolio`}>
+            <FontAwesomeIcon icon={faEye}/>
+            Projects
+          </Link>
         </p>
       </section>
       <section className={`home__skills`}>

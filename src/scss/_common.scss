@@ -1,3 +1,5 @@
+@import "variables";
+
 morphext > .animated {
   display: inline-block;
 }
@@ -9,4 +11,21 @@ morphext > .animated {
 
 .text-uppercase{
   text-transform: uppercase;
+}
+
+.btn{
+  padding: 10px 15px;
+  text-decoration: none;
+  &.btn-primary{
+    background: $BLUE_COLOR;
+    color: $WHITE_COLOR;
+  }
+  &.btn-round{
+    padding-left: 36px;
+    padding-right: 36px;
+    border-radius: 32px;
+  }
+  svg,i,span{
+    margin-right: 8px;
+  }
 }

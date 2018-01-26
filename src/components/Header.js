@@ -30,7 +30,7 @@ class Header extends Component {
     e.preventDefault();
 
     const {dispatch, rsidebar} = this.props
-		dispatch(toggleSidebar(!rsidebar))
+		dispatch(toggleSidebar(true))
   }
 
   render(){

@@ -25,13 +25,7 @@ export default class Sidebar extends Component{
 
     const {history, closeSidebarAction,rsidebar} = this.props;
     /* Listen URL change */
-    history.listen((location,action) => {
-      if(!rsidebar){
-        closeSidebarAction(false)
-      }
-    });
-
-
+    
     $(document).ready(function(){
       const linkTooltip = $('.sidebar__categories ul li').children("[data-toggle='tooltip']");
       try{
