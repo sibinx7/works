@@ -7,8 +7,6 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 
 import '../scss/sidebar.scss';
-import * as Tooltip from 'tooltip.js/dist/esm/tooltip'
-
 
 
 import {toggleSidebar} from '../actions/index'
@@ -25,20 +23,6 @@ export default class Sidebar extends Component{
 
     const {history, closeSidebarAction,rsidebar} = this.props;
     /* Listen URL change */
-    
-    $(document).ready(function(){
-      const linkTooltip = $('.sidebar__categories ul li').children("[data-toggle='tooltip']");
-      try{
-        linkTooltip.each((index, ele)=> {
-          new Tooltip(ele,{
-            placement: 'right',
-            title: ele.getAttribute('title')
-          })
-        })
-      }catch(e){
-        console.log(e)
-      }
-    })
 
   }
   render(){
