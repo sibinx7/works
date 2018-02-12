@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 
-import  '@fortawesome/fontawesome';
+// import  '@fortawesome/fontawesome';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {faEye} from '@fortawesome/fontawesome-free-solid'
 
@@ -41,11 +41,15 @@ class Home extends Component{
     const $ = window.$;
     $(document).ready((e)=> {
       /* Text animation */
-      const wodryText = $('.wodry-text');
-      wodryText.Morphext({
-        animation:'flipInX',
-        separator:'|'
-      });
+      try{
+				const wodryText = $('.wodry-text');
+				wodryText.Morphext({
+					animation:'flipInX',
+					separator:'|'
+				});
+			}catch(e){
+				// console.log(e)
+			}
       /* End Text animation */
 
     })
