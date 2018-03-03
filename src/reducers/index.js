@@ -1,7 +1,5 @@
-import rsidebar from './r-sidebar';
+import { combineReducers } from 'redux'
+import projects from './projects';
 
-const commonReducers = {
-  rsidebar
-}
 
-export default commonReducers;
+export default combineReducers(projects);

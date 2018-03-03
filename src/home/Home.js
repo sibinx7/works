@@ -59,9 +59,7 @@ class Home extends Component{
     return <div className="main-content home">
       <div className="home__welcome">
         <div className="container">
-          <h3>Welcome to 7chip</h3>
-          <h2>Crafted Websites</h2>
-          <h1>
+          <h1 className={`text-center`}>
             We Develop
             <span className="d-inline wodry-text">
             {
@@ -72,16 +70,19 @@ class Home extends Component{
         </div>
       </div>
       <section className='home__information'>
-        <p>
-          Thanks for visiting my portfolio website. Here I develop WordPress Website for
-          small and medium clients, PSD to HTML Projects, Laravel and Ruby on Rails Projects.
-        </p>
-        <p className="text-center">
-          <Link className={`btn btn-primary btn-round`} to={`/portfolio`}>
-            <FontAwesomeIcon icon={faEye}/>
-            Projects
-          </Link>
-        </p>
+        <div className="container">
+          <p className={`text-center`}>
+            Thanks for visiting my portfolio website. Here I develop WordPress Website for
+            small and medium clients, PSD to HTML Projects, Laravel and Ruby on Rails Projects.
+          </p>
+          <p className="text-center">
+            <Link className={`button button-secondary large rounded-0`} to={`/portfolio`}>
+              <FontAwesomeIcon icon={faEye} className={`mr-1`}/>
+              &nbsp;
+              Projects
+            </Link>
+          </p>
+        </div>
       </section>
       <section className={`home__skills`}>
         <div className="container">

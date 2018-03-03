@@ -12,6 +12,7 @@ import Home from './home/Home';
 import Portfolio from './home/Portfolio';
 import Services from './home/Services';
 import About from './home/About';
+import Footer from "./components/Footer";
 
 
 /* End Pages */
@@ -26,10 +27,9 @@ class App extends Component {
     render() {
         return (
           <Router>
-            <main className = "App" >
-              <CSidebar/>
+            <main className="main">
+              <Header/>
               <div className='page'>
-                <Header/>
                 <div className="content">
                   <Route exact path='/' component={Home}/>
                   <Route path='/about' component={About}/>
@@ -37,6 +37,7 @@ class App extends Component {
                   <Route path='/services' component={Services}/>
                 </div>
               </div>
+              <Footer/>
             </main>
           </Router>
         );

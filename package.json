@@ -25,6 +25,8 @@
         "react-router-dom": "^4.2.2",
         "react-test-renderer": "^16.2.0",
         "redux": "^3.7.2",
+        "redux-logger": "^3.0.6",
+        "redux-thunk": "^2.2.0",
         "shared": "^0.2.0",
         "tooltip.js": "^1.1.7",
         "whatwg-fetch": "2.0.3"

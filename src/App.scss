@@ -1,3 +1,11 @@
+@import "../node_modules/foundation-sites/scss/foundation";
+
+@include foundation-everything;
+@include foundation-xy-grid-classes();
+
+
+
+
 @import "./scss/common";
 @import "./scss/_fonts";
 @import "./scss/_variables";
@@ -32,11 +40,6 @@ body {
   }
 }
 
-.App {
-  text-align: center;
-  display: -webkit-flex;
-  display: flex;
-}
 
 .page {
   -webkit-flex: 100%;
@@ -76,7 +79,7 @@ body {
 /* HEADER */
 
 .header {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -191,6 +194,7 @@ header.header {
     padding: 0;
     li {
       list-style: none;
+      text-align: center;
     }
   }
 }
@@ -240,7 +244,6 @@ header.header {
 .content {
   min-height: calc(100vh - 60px);
   position: relative;
-  margin-top: 60px;
   z-index: 0;
   .main-content {
     min-height: calc(100vh - 60px);
@@ -259,7 +262,8 @@ header.header {
     padding: 100px 0;
     height: calc(100vh - 60px);
     min-height: 720px;
-    background-image: url("./images/top-blue-bg.png");
+    //background-image: url("./images/top-blue-bg.png");
+    background-image: url("./images/project-background.jpg");;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: top center;
@@ -268,8 +272,7 @@ header.header {
     display: flex;
     align-items: center;
     h2, h3, h1 {
-      color: #fff;
-      text-shadow: 0 1px 1px $PRIMARY_COLOR;
+      color: #464646;
     }
 
     h1 {
@@ -290,7 +293,7 @@ header.header {
     font-size: 40px;
     line-height: 64px;
     font-weight: bold;
-    color: $PRIMARY_COLOR;
+    color: #555;
   }
   &__skills{
     padding-top: 100px;
@@ -534,6 +537,16 @@ header.header {
   from { transform: rotate(360deg); }
 }
 
+
+$COMMON_SKILL_BG: #0af!default;
+$SKILL_SECOND_BG: $BLUE_COLOR!default;
+$SKILL_THREE_BG: $BLUE_COLOR!default;
+$SKILL_GRADIENT_BG: $BLUE_COLOR!default;
+
+$COMMON_SKILL_BG: #474747;
+$SKILL_SECOND_BG: #575757;
+$SKILL_THREE_BG: #474747;
+$SKILL_GRADIENT_BG: #676767;
 .wave{
   &__box{
     width: 100%;
@@ -556,7 +569,7 @@ header.header {
     position: absolute;
     top: 3%;
     left: 50%;
-    background: #0af;
+    background: $COMMON_SKILL_BG;
     width: 200%;
     height: 200%;
     margin-left: calc(-200% + 250px);
@@ -571,11 +584,11 @@ header.header {
   &__two{
     animation: drift 7000ms infinite linear;
     opacity: .4;
-    background: $BLUE_COLOR;
+    background: $SKILL_SECOND_BG;
   }
   &__three{
     animation: drift 5000ms infinite linear;
-    background: $BLUE_COLOR;
+    background: $SKILL_THREE_BG;
     opacity: 0.5;
   }
   &__text{
@@ -599,8 +612,8 @@ header.header {
       width: 100%;
       height: 100%;
       pointer-events: none;
-      background-image: -webkit-linear-gradient(top, $BLUE_COLOR,transparent, transparent);
-      background-image: linear-gradient(bootom, $BLUE_COLOR,transparent, transparent);
+      background-image: -webkit-linear-gradient(top, $SKILL_GRADIENT_BG,transparent, transparent);
+      background-image: linear-gradient(bootom, $SKILL_GRADIENT_BG,transparent, transparent);
       transform: translate3d(0, 0, 0);
     }
     span{

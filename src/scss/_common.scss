@@ -29,3 +29,127 @@ morphext > .animated {
     margin-right: 8px;
   }
 }
+
+
+.header{
+  background: #fff;
+  nav{
+    display: -webkit-flex;
+    display: flex;
+    min-height: 90px;
+    a{
+      color: #333;
+    }
+    .menu{
+      flex: auto;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-align-content: center;
+      align-content: center;
+      a{
+        color: #333;
+      }
+      &.menu-brand{
+        li{
+          a{
+            padding-top: 25px;
+            padding-bottom: 25px;
+            color: #333;
+            font-size: 36px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    &.secondary-nav{
+      position: absolute;
+      visibility: hidden;
+      top: -100px;
+      ul{
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        justify-content: space-around;
+        width: 100%;
+        padding: 0;
+        margin: 20px 0;
+        li{
+          -webkit-flex: auto;
+          flex: auto;
+          list-style: none;
+          text-align: center;
+          a{
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+            padding: 0.7rem 1rem;
+            svg{
+              margin-right: 5px;
+            }
+          }
+          &.close-button-li{
+            text-align: left;
+            max-width: 60px;
+            a{
+              padding: 0.7rem 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.open-sec-menu{
+    nav.secondary-nav{
+      position: relative;
+      visibility: visible;
+      top: 0;
+      z-index: 1;
+    }
+    nav.main-nav{
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      z-index: -1;
+    }
+  }
+}
+.footer{
+  color: #464646;
+  background: #f3f3f3;
+  font-size: 15px;
+  line-height: 25px;
+  a{
+    color: #367CFF;
+    text-decoration: none;
+    &:hover,&:focus{
+      text-decoration: none;
+    }
+  }
+  &__top{
+    padding-top: 80px;
+    padding-bottom: 40px;
+    ul{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li{
+        list-style: none;
+        a{
+          display: block;
+          padding-top: 5px;
+          font-size: 16px;
+          padding-bottom: 5px;
+          color: #333;
+        }
+      }
+    }
+  }
+  &__bottom{
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+}
+

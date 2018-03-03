@@ -5,12 +5,17 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter} from 'react-router-dom';
 
-import {createStore, combineReducers } from 'redux';
+import {createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk'
+import logger from 'redux-logger';
+
 import commonReducers from './reducers'
+
 
 import {Provider} from 'react-redux'
 
-const store = createStore(combineReducers({...commonReducers}));
+const store = createStore(commonReducers, applyMiddleware(thunk, logger));
+
 
 ReactDOM.render(
   <Provider store={store}>
