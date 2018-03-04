@@ -44,7 +44,6 @@ class PortfolioSlice extends Component{
       // transform: `translate3d(${elementBox}px, 0,0)`
     };
 
-    console.log(elementWidth);
     const bPositionOne = { backgroundPosition: `0 0`};
     const bPositionTwo = { backgroundPosition: `-${(elementBox)}px 0`};
     const bPositionThree = { backgroundPosition: `-${((elementBox)*2)}px 0`};
@@ -87,21 +86,11 @@ class Portfolio extends Component{
       projects:[]
     }
 
-    this.fetchProject = this.fetchProject.bind(this);
-    this.fetchProject();
   }
 
 
   fetchProject(){
-    axios.get(settings.PORTFOLIO_URL)
-      .then((response)=>{
-        const {data} = response;
-        this.setState({
-          projects: data
-        })
-      }).catch((error)=> {
 
-    });
   }
 
 
