@@ -115,13 +115,14 @@ morphext > .animated {
     }
   }
 }
+
 .footer{
   color: #464646;
   background: #f3f3f3;
   font-size: 15px;
   line-height: 25px;
   a{
-    color: #367CFF;
+    color: #333;
     text-decoration: none;
     &:hover,&:focus{
       text-decoration: none;
@@ -129,7 +130,7 @@ morphext > .animated {
   }
   &__top{
     padding-top: 80px;
-    padding-bottom: 40px;
+    padding-bottom: 0;
     ul{
       list-style: none;
       padding: 0;
@@ -150,6 +151,30 @@ morphext > .animated {
     padding-top: 20px;
     padding-bottom: 20px;
   }
+}
 
+.social{
+  &__icons{
+    display: block;
+    margin: 0;
+    padding: 0;
+    li{
+      display: inline-block;
+      + li{
+        margin-left: 10px;
+      }
+      a{
+        font-size: 18px;
+        color: #fff;
+        display: block;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #333;
+        text-align: center;
+        line-height: 42px;
+      }
+    }
+  }
 }
 

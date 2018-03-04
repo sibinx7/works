@@ -8,17 +8,17 @@ export const toggleSidebar = (status=false) =>{
   }
 };
 
-export const AJAX_PROCESSING = (status) => {
+export const AJAX_PROCESSING = (status=false) => {
   return {
     type: 'AJAX_CALLING',
     status
   }
 };
 
-export const projectFetchSuccess = (item) => {
+export const projectFetchSuccess = ( projects ) => {
   return {
     type: 'PROJECT_FETCH_SUCCESS',
-    item
+    projects
   }
 };
 
@@ -36,9 +36,11 @@ export const fetchProjects = (items=[]) => {
     dispatch(AJAX_PROCESSING(true));
     axios.get(settings.PORTFOLIO_URL)
       .then((response)=>{
-        const {data} = response;
+        const { data, status } = response;
         dispatch(AJAX_PROCESSING(false));
-        dispatch(projectFetchSuccess(data))
+        if( status === 200){
+          dispatch(projectFetchSuccess(data))
+        }
       }).catch((error)=> {
         dispatch(projectFetchError(
           error,

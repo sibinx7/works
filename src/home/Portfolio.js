@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import settings from '../api/env';
+import { connect } from 'react-redux';
 import $ from 'jquery'
 import '@fortawesome/fontawesome';
 import ReactFontAwesome from '@fortawesome/react-fontawesome';
 import {faChevronDown} from '@fortawesome/fontawesome-free-solid'
 
+
+import { fetchProjects } from '../actions/index';
 
 let DemoWebsite =  require('../images/dummy-website.png');
 // DemoWebsite = require('../images/square-1.png');
@@ -88,22 +89,19 @@ class Portfolio extends Component{
 
   }
 
-
-  fetchProject(){
-
-  }
-
-
   componentWillMount(){
 
   }
 
   componentDidMount(){
+    const { initProjects } = this.props;
 
+    initProjects();
   }
 
   render(){
-    const {projects} = this.state;
+    console.log(this.props);
+    const { projects } = this.props;
     return <div className="portfolio__content">
       <div className="container-fluid">
         <div className="row">
@@ -128,4 +126,18 @@ class Portfolio extends Component{
   }
 }
 
-export default Portfolio;
+const mapStateToProps = ({ projects }) => {
+  return {
+    projects
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    initProjects: () => {
+      dispatch(fetchProjects([]));
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Portfolio);

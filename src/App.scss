@@ -267,7 +267,7 @@ header.header {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: top center;
-    background-color: $PRIMARY_COLOR;
+    background-color: #f7f7f7;
     display: -webkit-flex;
     display: flex;
     align-items: center;
@@ -410,6 +410,8 @@ header.header {
       font-weight: bold;
       text-transform: uppercase;
       text-decoration: none;
+      text-align: center;
+      padding-top: 15px;
     }
   }
   &.overlay {

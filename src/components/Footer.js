@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import '@fortawesome/fontawesome';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import {faFacebook, faTwitter, faYoutube, faLinkedin} from '@fortawesome/fontawesome-free-brands'
+import {faFacebookF, faTwitter, faYoutube, faLinkedinIn} from '@fortawesome/fontawesome-free-brands'
 
 
 
@@ -35,11 +35,11 @@ export default class Footer extends Component{
               <div className="cell small-12 medium-3">
                 <div className="footer__box">
                   <h3>About 7chip</h3>
-                  <article>
-                    <a href=""><b>7chip</b></a> is a software company which mainly focus on WordPress, Laravel and Ruby On Rails
+                  <p>
+                    <a href="http://www.7chip.com"><b>7chip</b></a> is a software company which mainly focus on WordPress, Laravel and Ruby On Rails
                     Projects. 7chip started a technology blog, later we start to do small projects from Freelancer and other sources.
                     Now we are capable to do upto medium size projects.
-                  </article>
+                  </p>
                   <p>
                     Phone: 8943648198/8281604078
                   </p>
@@ -115,7 +115,7 @@ export default class Footer extends Component{
               <div className="cell small-12 medium-5">
                 <ul className="social__icons">
                   <li><a href="">
-                    <FontAwesomeIcon icon={faFacebook}/>
+                    <FontAwesomeIcon icon={faFacebookF}/>
                   </a></li>
                   <li><a href="">
                     <FontAwesomeIcon icon={faTwitter}/>
@@ -124,12 +124,12 @@ export default class Footer extends Component{
                     <FontAwesomeIcon icon={faYoutube}/>
                   </a></li>
                   <li><a href="">
-                    <FontAwesomeIcon icon={faLinkedin}/>
+                    <FontAwesomeIcon icon={faLinkedinIn}/>
                   </a></li>
                 </ul>
               </div>
               <div className="cell small-12 medium-2"></div>
-              <div className="cell small-12 medium-5">
+              <div className="cell small-12 medium-5 text-right">
                 <p>
                   Copyright &copy; 2018, All rights reserved.
                 </p>
