@@ -81,27 +81,27 @@ class Header extends Component {
               </a>
             </li>
             <li>
-              <a href="">
+              <Link to={`/`}>
                 <FontAwesomeIcon icon={faHome}/>
                 Home
-              </a>
+              </Link>
             </li>
-            <li><a href="">
+            <li><Link to={`/services`}>
               <FontAwesomeIcon icon={faDocker}/>
-              Service
-            </a></li>
-            <li><a href="">
+              Services
+            </Link></li>
+            <li><Link to={`/portfolio`}>
               <FontAwesomeIcon icon={ faCubes }/>
               Projects
-            </a></li>
-            <li><a href="">
+            </Link></li>
+            <li><Link to={`/contact`}>
               <FontAwesomeIcon icon={ faEnvelopeOpen }/>
               Contact
-            </a></li>
-            <li><a href="">
+            </Link></li>
+            <li><Link to={`/about`}>
               <FontAwesomeIcon icon={ faMapSigns }/>
               About
-            </a></li>
+            </Link></li>
           </ul>
         </nav>
       </div>

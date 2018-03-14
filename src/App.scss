@@ -319,6 +319,7 @@ header.header {
     display: flex;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
+    outline: none;
   }
   &__item {
     -webkit-flex: 0 0 25%;
@@ -327,6 +328,7 @@ header.header {
     flex-basis: 25%;
     padding-left: 15px;
     padding-right: 15px;
+    outline: none;
   }
   &__image {
     position: relative;
@@ -349,8 +351,8 @@ header.header {
     height: 0;
     position: relative;
     margin-bottom: 30px;
+    outline: none;
     &:hover {
-
       .slice {
         &__two {
           -webkit-transform: translate3d(60.1px, 0, 0) rotate3d(0, 1, 0, -45deg);
@@ -625,6 +627,27 @@ $SKILL_GRADIENT_BG: #676767;
       letter-spacing: 1.6px;
       line-height: 36px;
       color: #fff;
+    }
+  }
+}
+
+.about{
+  &__section{
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  &__me{
+    p{
+      >b{
+        margin-right: 5px;
+      }
+    }
+  }
+  &__download{
+    .button{
+      +.button{
+        margin-left: 10px;
+      }
     }
   }
 }

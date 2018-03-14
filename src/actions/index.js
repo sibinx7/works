@@ -8,9 +8,9 @@ export const toggleSidebar = (status=false) =>{
   }
 };
 
-export const AJAX_PROCESSING = (status=false) => {
+export const AJAX_PROCESSING = (status = false) => {
   return {
-    type: 'AJAX_CALLING',
+    type: 'AJAX_PROCESSING',
     status
   }
 };

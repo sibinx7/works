@@ -7,6 +7,7 @@ import {faChevronDown} from '@fortawesome/fontawesome-free-solid'
 
 
 import { fetchProjects } from '../actions/index';
+import {AJAX_PROCESSING} from "../actions";
 
 let DemoWebsite =  require('../images/dummy-website.png');
 // DemoWebsite = require('../images/square-1.png');
@@ -80,6 +81,31 @@ class PortfolioSlice extends Component{
   }
 }
 
+
+const ProjectDisplay = ({projects, AJAX_PROCESSING}) => {
+  console.log(`--------------------`);
+  console.log(AJAX_PROCESSING);
+  console.log(`--------------------`);
+
+  if(AJAX_PROCESSING){
+    return (
+      <div>
+        Please wait...
+      </div>
+    )
+  }
+  return (
+    ((projects.length > 0 ) &&
+      projects.map((item,index) =>{
+        return (<div className="portfolio__item" key={index}>
+          <div className="portfolio__image">
+            <PortfolioSlice {...item} number={index}/>
+          </div>
+        </div>)
+      }))
+  )
+};
+
 class Portfolio extends Component{
   constructor(){
     super();
@@ -100,23 +126,14 @@ class Portfolio extends Component{
   }
 
   render(){
-    console.log(this.props);
-    const { projects } = this.props;
+    const { projects , AJAX_PROCESSING } = this.props;
     return <div className="portfolio__content">
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
             <div className="container">
               <div className="portfolio__list">
-                {
-                  projects.map((item,index) =>{
-                    return (<div className="portfolio__item" key={index}>
-                      <div className="portfolio__image">
-                        <PortfolioSlice {...item} number={index}/>
-                      </div>
-                    </div>)
-                  })
-                }
+                <ProjectDisplay projects={projects} AJAX_PROCESSING={AJAX_PROCESSING}/>
               </div>
             </div>
           </div>
@@ -126,9 +143,10 @@ class Portfolio extends Component{
   }
 }
 
-const mapStateToProps = ({ projects }) => {
+const mapStateToProps = ({ projects, AJAX_PROCESSING }) => {
   return {
-    projects
+    projects,
+    AJAX_PROCESSING
   }
 };
 

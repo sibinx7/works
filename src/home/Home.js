@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+
+
 
 // import  '@fortawesome/fontawesome';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -86,7 +88,7 @@ class Home extends Component{
       </section>
       <section className={`home__skills`}>
         <div className="container">
-          <h2 className='text-uppercase text-uppercase section__title'>Skills</h2>
+          <h2 className='text-uppercase text-center section__title'>Skills</h2>
           <ul className="skill__list">
             {
               this.skills.map( (item, index) => <li key={index}>
