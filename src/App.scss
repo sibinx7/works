@@ -651,3 +651,15 @@ $SKILL_GRADIENT_BG: #676767;
     }
   }
 }
+
+.chart-content{
+  svg{
+    display: block;
+    margin: 0 auto 30px;
+  }
+}
+.tooltip-box-a{
+  background: #29b15c;
+  padding: 10px 15px;
+  color: #fff;
+}

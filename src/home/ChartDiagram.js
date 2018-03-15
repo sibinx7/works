@@ -22,59 +22,68 @@ export class D3JSPieChart extends Component{
 
   }
   componentDidMount(){
+    d3.tip = d3Tip;
 
-    const svgElement = d3.select('svg#d3-pie-chart');
+    const tip = d3.tip()
+      .attr('class','d3-tip')
+      .offset([-10,10])
+      .html((d) => {
+        const {data:{Name,Affinity}} = d;
+        return `<div class="tooltip-box-a"><strong>${Name}</strong><i>${Affinity}</i></div>`
+      });
+
+    const svgElement = d3.select('svg#d3-pie-chart').call(tip);
     const svgWidth = + svgElement.attr('width');
     const svgHeight = + svgElement.attr('height');
     const svgRadius = Math.min(svgWidth, svgHeight)/2;
-    console.log('WIDTH')
-    console.log(svgWidth)
-    console.log(svgHeight)
-    console.log(svgRadius)
+
     const gElement = svgElement.append('g')
-      .attr('transform',`translate(${svgWidth/2}, ${svgHeight/2})`);
+      .attr('transform',`translate(${svgWidth/2}, ${svgHeight/2})`)
 
-    var color = d3.scaleOrdinal(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
+    const color = d3.scaleOrdinal(d3.schemeCategory20c);
     const d3Pie = d3.pie()
       .sort(null)
       .value((d) => {
         return d['Affinity']
-      })
-
+      });
     const arcPath = d3.arc()
       .outerRadius(svgRadius - 10)
-      .innerRadius(0)
-
+      .innerRadius(0);
     const label = d3.arc()
       .outerRadius(svgRadius - 40)
-      .innerRadius(svgRadius - 40)
-
+      .innerRadius(svgRadius - 40);
     const ArcTextStyle = {
       font: `10px san-serif`,
       textAnchor: `middle`
-    }
-    console.log(this.props.file)
+    };
+
+
+
+
     d3.csv(this.props.file, (d) => {
       d['Affinity'] = + d['Affinity'];
       return d;
     }, (error, data) => {
-
-
-      var arc = gElement.selectAll(".arc")
+      const arc = gElement.selectAll(".arc")
         .data(d3Pie(data))
         .enter().append("g")
-        .attr("class", "arc");
+        .attr("class", "arc")
+
+
 
       arc.append("path")
         .attr("d", arcPath)
-        .attr("fill", function(d) { return color(d.data['Name']); });
-
+        .attr("fill", (d) => color(d.data['Name']))
+        .call(tip)
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide);
       arc.append("text")
         .attr('style', ArcTextStyle)
-        .attr("transform", function(d) { return "translate(" + label.centroid(d) + ")"; })
+        .attr("transform", (d) => {
+          return `translate(${label.centroid(d)})`;
+        })
         .attr("dy", "0.35em")
-        .text(function(d) { return d.data['Name']; });
+        // .text((d) => d.data['Name']);
     })
   }
 
@@ -194,7 +203,7 @@ export default class ChartDiagram extends Component{
 
   render(){
     return(
-      <div className={`page-content`}>
+      <div className={`page-content chart-content`}>
       <div className={`grid-container`}>
         <div className="grid-x grid-margin-x">
           <div className="small-12 large-12 cell">
