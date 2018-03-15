@@ -215,3 +215,25 @@ morphext > .animated {
   padding-top: 100px;
   padding-bottom: 100px;
 }
+
+
+.chart-wrapper{
+  padding: 20px;
+  border: 1px solid #ddd;
+  background: #fff;
+  margin-bottom: 30px;
+}
+.page-content{
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.tooltip-box{
+  background: red;
+  border: 3px solid #ddd;
+  color: #fff;
+  padding: 20px;
+  strong,i{
+    display: block;
+  }
+}

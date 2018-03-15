@@ -80,11 +80,11 @@ export class D3JSPieChart extends Component{
 
   render(){
     return(
-      <div>
+      <div className={`chart-wrapper`}>
         <div className={`svg-wrapper`}>
           <svg id={`d3-pie-chart`} width={`640`} height={`480`}></svg>
         </div>
-        <h3>{this.props.title}</h3>
+        <h3 className={`text-center`}>{this.props.title}</h3>
       </div>
     )
   }
@@ -98,64 +98,73 @@ export class D3ToolTipChart extends Component{
 
 
   componentDidMount(){
-    const formatPercentage = d3.format('%');
-    const x = d3.scaleBand().rangeRound([0,640])
-    const y = d3.scaleLinear()
-      .range([480, 0]);
-    const xAxis = d3.axisBottom(x);
-    const yAxis = d3.axisLeft(y)
-      .tickFormat(formatPercentage);
-
     const svgElement = d3.select('svg#bar-chart-tooltip')
+    const formatPercentage = d3.format('%');
+    const margin = {top: 30, right:30, bottom:230, left: 30};
+    const width = +svgElement.attr('width') - (margin.left + margin.right);
+    const height = +svgElement.attr('height') - (margin.top + margin.bottom);
+
+    const x = d3.scaleBand().rangeRound([0,width]).padding(0.1);
+    const y = d3.scaleLinear().rangeRound([height,0]);
+
+
+    const xAxis = d3.axisBottom(x);
+    const yAxis = d3.axisLeft(y).tickFormat(d3.format('d'));
+      // .tickFormat(formatPercentage);
+
+
 
     d3.tip = d3Tip;
     const tip = d3.tip()
       .attr('class','d3-tip')
       .offset([-10,0])
-      .html((d) => `<strong>Name</strong>:${d['Name']}`)
+      .html((d) => {
+        return `<div class="tooltip-box"><strong>${d['Name']}</strong><i>${d[' Index']}</i></div>`
+      });
 
-    const gElement = svgElement.append('g')
+    const gElement = svgElement.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`)
     svgElement.call(tip);
 
     d3.csv(this.props.file, (d)=>{
-      d['Index'] = + d[`Index`];
+      d['Index'] = + d[` Index`];
       return d;
     }, (error, data) => {
-      x.domain(data.map(function(d) { return d['Name']; }));
-      y.domain([0, d3.max(data, function(d) { return d[' Index']; })]);
+      x.domain(data.map((d) => d['Name']));
+      y.domain([0, d3.max(data, (d) => d['Index'])]);
 
-      svgElement.append("g")
+      gElement.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + 480 + ")")
-        .call(xAxis);
+        .attr("transform", `translate(0, ${height})`)
+        .call(xAxis)
+        .selectAll('text')
+          .attr("dx", "-10em")
+          .attr("dy", "-.55em")
+          .attr('transform', (d) => `rotate(-90)`);
 
-      svgElement.append("g")
+
+      gElement.append("g")
         .attr("class", "y axis")
         .call(yAxis)
         .append("text")
-        .attr("transform", "rotate(-90)")
+        .attr("transform", "rotate(90)")
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Frequency");
+        .text("Index")
+        .call(yAxis)
 
-      svgElement.selectAll(".bar")
+      gElement.selectAll(".bar")
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", function(d) { return x(d['Name']); })
-        .attr("width", x.bandwidth())
+        .attr("x", (d) => x(d['Name']))
         .attr('y', (d) => {
-          const dIndex = d[' Index'];
-          return dIndex;
+          return y(d['Index']);
         })
+        .attr("width", x.bandwidth())
         .attr('height', (d) => {
-          console.log(d)
-          const dIndex = d[' Index'];
-          console.log(dIndex)
-          console.log(y(dIndex))
-          console.log('Height')
-          return (480 - dIndex);
+          const dIndex = y(d['Index']);
+          return (height - dIndex);
         })
         // .attr("y", function(d) { return y(d['Name']); })
         // .attr("height", function(d) { return 480 - y(d['Index']); })
@@ -166,8 +175,11 @@ export class D3ToolTipChart extends Component{
 
   render(){
     return (
-      <div>
-        <svg width={640} height={480} id={`bar-chart-tooltip`}></svg>
+      <div className={`chart-wrapper`}>
+        <div className="svg-wrapper">
+          <svg width={640} height={480} id={`bar-chart-tooltip`}></svg>
+        </div>
+        <h3 className={`text-center`}>{this.props.title}</h3>
       </div>
     )
   }
@@ -182,6 +194,7 @@ export default class ChartDiagram extends Component{
 
   render(){
     return(
+      <div className={`page-content`}>
       <div className={`grid-container`}>
         <div className="grid-x grid-margin-x">
           <div className="small-12 large-12 cell">
@@ -193,7 +206,7 @@ export default class ChartDiagram extends Component{
             </div>
           </div>
         </div>
-
+      </div>
       </div>
     )
   }
