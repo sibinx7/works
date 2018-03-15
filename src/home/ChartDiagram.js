@@ -202,16 +202,21 @@ export default class ChartDiagram extends Component{
   }
 
   render(){
+    const {location:{hostname}} = window;
+    const SERVER_URL = (hostname === 'localhost' )? `http://localhost:3000`:`http://7chip.com/publicly`;
+
+    console.log('HELLO')
+    console.log(SERVER_URL)
     return(
       <div className={`page-content chart-content`}>
       <div className={`grid-container`}>
         <div className="grid-x grid-margin-x">
           <div className="small-12 large-12 cell">
-            <D3JSPieChart title={`Simple Pie Chart | Affinity.csv`} file={`/csv/affinity.csv`}/>
+            <D3JSPieChart title={`Simple Pie Chart | Affinity.csv`} file={`${SERVER_URL}/csv/affinity.csv`}/>
           </div>
           <div className="small-12 large-12 cell">
             <div className="d3-tool-tip-chart">
-              <D3ToolTipChart title={`Simple Bar Chart | index.csv`} file={`/csv/index.csv`}/>
+              <D3ToolTipChart title={`Simple Bar Chart | city.csv`} file={`${SERVER_URL}/csv/city.csv`}/>
             </div>
           </div>
         </div>

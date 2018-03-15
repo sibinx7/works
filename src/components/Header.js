@@ -102,6 +102,9 @@ class Header extends Component {
               <FontAwesomeIcon icon={ faMapSigns }/>
               About
             </Link></li>
+            <li>
+              <Link to={`csv-parse`}>CSV Parse</Link>
+            </li>
           </ul>
         </nav>
       </div>
