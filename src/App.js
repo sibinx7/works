@@ -13,6 +13,7 @@ import ChartDiagram from './home/ChartDiagram'
 /* Common Section */
 import Header from './components/Header';
 import Footer from "./components/Footer";
+import Survey from "./survey/index";
 
 
 /* End Pages */
@@ -39,6 +40,7 @@ class App extends Component {
               <Route path='/portfolio' component={ Portfolio }/>
               <Route path='/services' component={ Services }/>
               <Route path={`/csv-parse`} component={ChartDiagram}/>
+              <Route path={`/surveys`} component={ Survey }/>
             </div>
           </div>
           <Footer/>

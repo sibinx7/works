@@ -103,7 +103,7 @@ class Header extends Component {
               About
             </Link></li>
             <li>
-              <Link to={`csv-parse`}>CSV Parse</Link>
+              <Link to={`/surveys`}>Survey</Link>
             </li>
           </ul>
         </nav>
