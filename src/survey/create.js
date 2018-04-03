@@ -64,17 +64,20 @@ class QuestionOptions extends Component{
   render(){
     let { options } = this.state;
     return(
-      <div>
+      <div className={`grid-x grid-margin-x flex-end-content`}>
+        <div className={`small-12 medium-10 float-right cell`}>
+          <div className={`callout`}>
+            {
+              options.map((option,index) => {
+                return(
+                  <QuestionOption option={option} index={index} key={index} setUpdate={this.getValue}/>
+                )
+              })
+            }
 
-        {
-          options.map((option,index) => {
-            return(
-              <QuestionOption option={option} index={index} key={index} setUpdate={this.getValue}/>
-            )
-          })
-        }
-
-        <button className={`button tiny`} onClick={this.addNewOption}> Add Option</button>
+            <button className={`button tiny`} onClick={this.addNewOption}> Add Option</button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -84,7 +87,8 @@ class QuestionElement extends Component{
   constructor(props){
     super(props)
     this.state = {
-      item: this.props.item
+      item: this.props.item,
+      index: this.props.index
     };
   }
 
@@ -128,23 +132,32 @@ class QuestionElement extends Component{
     })
   };
   render(){
-    let {index, question, type, options} = this.state.item;
+    let {item:{question, type, options}, index} = this.state;
     return(
       <div>
-        <div>{index}</div>
-        <div>
-          <input type="text" value={question || ''} onChange={this.updateQuestion}
-                 id={`question-${index}`}
-                 name={`question`}/>
+        <div className="grid-x grid-margin-x">
+          <div className="small-12 medium-1 cell">
+            <div>#{index}</div>
+          </div>
+          <div className="small-12 medium-7 cell">
+            <div>
+              <input type="text" value={question || ''} onChange={this.updateQuestion}
+                     id={`question-${index}`}
+                     name={`question`} placeholder={`Add your Questions`}/>
+            </div>
+          </div>
+
+        <div className="small-12 medium-4 cell">
+          <div>
+            <select name="" id="" value={type} onChange={this.updateType}>
+              <option value="text">TextBox</option>
+              <option value="radio">Radio Button</option>
+              <option value="checkbox">CheckBox</option>
+              <option value="textarea">TextArea</option>
+              <option value="dropdown">Dropdown</option>
+            </select>
+          </div>
         </div>
-        <div>
-          <select name="" id="" value={type} onChange={this.updateType}>
-            <option value="text">TextBox</option>
-            <option value="radio">Radio Button</option>
-            <option value="checkbox">CheckBox</option>
-            <option value="textarea">TextArea</option>
-            <option value="dropdown">Dropdown</option>
-          </select>
         </div>
         { (type!=='' && type!=='text' && type!=='textarea') ? <QuestionOptions
           options={options}
