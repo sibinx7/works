@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import projects from './projects';
+import {survey_index, surveys } from './surveys';
 
 
 export const AJAX_PROCESSING = (status = false, action) => {
@@ -13,5 +14,7 @@ export const AJAX_PROCESSING = (status = false, action) => {
 
 export default combineReducers({
   AJAX_PROCESSING,
-  projects
+  projects,
+  surveys,
+  survey_index
 });

@@ -31,6 +31,28 @@ export const projectFetchError = (item, error) => {
 };
 
 
+export const updateSurveyIndex = () => {
+  return {
+    type: 'INCREMENT',
+  }
+}
+
+export const addToSurvey = (item) => {
+  return {
+    type: 'ADD',
+    item
+  }
+}
+
+export const updateToSurvey = (item,id) => {
+  return {
+    type: 'UPDATE',
+    item,
+    id
+  }
+}
+
+
 export const fetchProjects = (items=[]) => {
   return (dispatch) => {
     dispatch(AJAX_PROCESSING(true));

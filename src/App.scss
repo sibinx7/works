@@ -672,3 +672,30 @@ $SKILL_GRADIENT_BG: #676767;
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
 }
+
+.survey-show{
+  input[type='text']{
+    width: 100%;
+  }
+  .radio-inputs,
+  .checkbox-inputs{
+    label{
+      display: inline-block;
+      input{
+        margin-left: 4px;
+      }
+      + label{
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.survey-wrapper{
+  h1.title{
+    margin-bottom: 40px;
+    small{
+      float: right;
+    }
+  }
+}

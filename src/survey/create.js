@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router'
 import {autobind} from 'autobind-decorator'
-
+import {addToSurvey, updateToSurvey, updateSurveyIndex} from '../actions/index'
 
 
 class QuestionOption extends Component{
@@ -16,11 +18,7 @@ class QuestionOption extends Component{
     }, () => {
       setUpdate(this.state.option, index)
     });
-
-
   }
-
-
 
   render(){
     let {option,index} = this.state;
@@ -75,7 +73,7 @@ class QuestionOptions extends Component{
               })
             }
 
-            <button className={`button tiny`} onClick={this.addNewOption}> Add Option</button>
+            <button className={`button tiny`} onClick={this.addNewOption} type={'button'}> Add Option</button>
           </div>
         </div>
       </div>
@@ -114,7 +112,7 @@ class QuestionElement extends Component{
 
   updateType = (e) => {
     let {item} = this.state;
-    item.type = e.target.value;
+    item['type'] = e.target.value;
     this.setState({
       item
     }, () => {
@@ -123,23 +121,31 @@ class QuestionElement extends Component{
   };
 
   updateOptions = (options) => {
-    console.log('GETTING');
-    console.log(options)
     let {item} = this.state;
     item['options'] = options;
     this.setState({item},()=>{
       this.triggerUpdate(this.state.item)
     })
   };
+
+  updateField = (e) => {
+    let {item} = this.state;
+    item['field'] = e.target.value;
+    this.setState({
+      item
+    }, () => {
+      this.triggerUpdate(this.state.item)
+    })
+  }
   render(){
-    let {item:{question, type, options}, index} = this.state;
+    let {item:{question, type, options, field, id}, index} = this.state;
     return(
       <div>
         <div className="grid-x grid-margin-x">
           <div className="small-12 medium-1 cell">
             <div>#{index}</div>
           </div>
-          <div className="small-12 medium-7 cell">
+          <div className="small-12 medium-6 cell">
             <div>
               <input type="text" value={question || ''} onChange={this.updateQuestion}
                      id={`question-${index}`}
@@ -147,7 +153,7 @@ class QuestionElement extends Component{
             </div>
           </div>
 
-        <div className="small-12 medium-4 cell">
+        <div className="small-12 medium-2 cell">
           <div>
             <select name="" id="" value={type} onChange={this.updateType}>
               <option value="text">TextBox</option>
@@ -158,6 +164,9 @@ class QuestionElement extends Component{
             </select>
           </div>
         </div>
+          <div className="small-12 medium-3 cell">
+            <input type="text" placeholder={`Field Name`} value={field} onChange={this.updateField}/>
+          </div>
         </div>
         { (type!=='' && type!=='text' && type!=='textarea') ? <QuestionOptions
           options={options}
@@ -197,15 +206,50 @@ class SurveyCreate extends Component{
   constructor(props){
     super(props)
     this.state = {
-      questions: []
+      questions: [],
+      name:'',
+      created_at:null
     }
   }
 
-
+  componentDidMount(){
+    const {match:{params:{id}}, surveys, survey_index} = this.props;
+    console.log(survey_index)
+    if(id){
+      let currentSurvey = (surveys.filter((item)=>{
+        return item.id === parseInt(id)
+      }))[0];
+      if(currentSurvey && currentSurvey.questions){
+        this.setState({...currentSurvey})
+      }
+    }
+  }
 
   submitForm = (e) =>{
     e.preventDefault();
-    console.log('Submit')
+    const { questions,name, id, created_at } = this.state;
+    const { addToStorage, history, survey_index, updateSIndex, updateToSurvey } = this.props;
+
+
+    console.log(survey_index)
+    console.log('SURVEY INDEX')
+    if(id===undefined){
+      if(questions.length > 0){// bad checking, question is and collection
+        addToStorage({
+          id: survey_index+1,
+          name,
+          questions,
+          created_at: new Date()
+        });
+        updateSIndex()
+        history.push('/surveys')
+      }
+    }else{
+      console.log(this.state);
+      updateToSurvey({...this.state});
+      history.push(`/surveys/show/${id}`)
+    }
+
   }
 
   addQuestion = (e) => {
@@ -214,7 +258,8 @@ class SurveyCreate extends Component{
     questions.push({
       question:'',
       type:'',
-      options:''
+      options:'',
+      field:''
     });
     this.setState({questions});
     console.log('Added question')
@@ -226,11 +271,24 @@ class SurveyCreate extends Component{
     this.setState({questions});
   }
 
+
+  updateName = (e) => {
+    this.setState({
+      name: e.target.value
+    })
+  }
+
+
   render(){
-    let { questions } = this.state;
+    let { questions, name, id, created_at } = this.state;
     return(
       <div>
         <form method="post" onSubmit={this.submitForm}>
+         <div className="form-group">
+           <label htmlFor="">Survey Name</label>
+           <input type="text" name={`survey_name`} value={name} onChange={this.updateName}/>
+         </div>
+
          <div className="question-wrapper">
            {questions.map((item,index) => {
              return(
@@ -244,13 +302,34 @@ class SurveyCreate extends Component{
 
           <div className="clearfix"></div>
           <hr/>
-          <ShowQuestions questions={questions}/>
-          <button type={`submit`} className={`button primary`}>Save</button>
+
+          <button type={`submit`} className={`button primary`}>{ id!=undefined ? 'Update':'Save'}</button>
           <button type={`reset`} className={`button secondary`}>Cancel</button>
         </form>
       </div>
     )
   }
 }
+//<ShowQuestions questions={questions}/>
 
-export default SurveyCreate;
+const mapStateToProps = ({survey_index, surveys}) => {
+  return {
+    survey_index,
+    surveys
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToStorage: (questions) => {
+      dispatch(addToSurvey(questions))
+    },
+    updateToStorage: (questions,id) => {
+      dispatch(updateToSurvey(questions,id))
+    },
+    updateSIndex: () => {
+      dispatch(updateSurveyIndex())
+    }
+  }
+}
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(SurveyCreate));

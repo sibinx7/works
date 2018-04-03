@@ -15,14 +15,15 @@ class Survey extends Component{
     let url;
     const { match } = this.props;
     if(match && match.url){
-      url = match.url ? match.url:''
+      url = match.path ? match.path:''
     }
+    console.log(match)
     return(
       <div className={`survey-wrapper page-content`}>
         <div className="grid-container">
           <div className="grid-x grid-margin-x">
             <div className="small-12 cell">
-              <h1 className={`text-center margin-bottom-3`}>
+              <h1 className={`text-center margin-bottom-3 title`}>
                 Survey
                 <small className="pull-right">
                   <Link to={`${url}/create`}>
@@ -35,7 +36,8 @@ class Survey extends Component{
                 <Switch>
                   <Route path={`${url}/index`} component={SurveyList}/>
                   <Route path={`${url}/create`} component={SurveyCreate}/>
-                  <Route path={`${url}/:id`} component={SurveyShow}/>
+                  <Route path={`${url}/show/:id`} component={SurveyShow}/>
+                  <Route path={`${url}/edit/:id`} component={SurveyCreate}/>
                   <Redirect exact from={`${url}/`} to={`${url}/index`}/>
                 </Switch>
               </div>
@@ -46,6 +48,8 @@ class Survey extends Component{
     )
   }
 }
+
+
 
 
 export default withRouter(Survey)
