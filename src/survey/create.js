@@ -2,6 +2,84 @@ import React, {Component} from 'react';
 import {autobind} from 'autobind-decorator'
 
 
+
+class QuestionOption extends Component{
+  constructor(props){
+    super(props)
+    this.state = this.props;
+  }
+
+  updateValue = (e) => {
+    const {setUpdate, index} = this.props;
+    this.setState({
+      option: e.target.value
+    }, () => {
+      setUpdate(this.state.option, index)
+    });
+
+
+  }
+
+
+
+  render(){
+    let {option,index} = this.state;
+    return(
+      <div>
+        <input type="text" value={option} onChange={this.updateValue} name={`option-${index}`}/>
+      </div>
+    )
+  }
+}
+
+class QuestionOptions extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      options: this.props.options || []
+    }
+  }
+
+  addNewOption = () => {
+    let {options}  = this.state;
+    options.push('');
+    this.setState({options})
+  }
+
+
+  getValue = (item, index) => {
+    console.log('GET VALUE');
+    console.log(item);
+    let { updateOptions } = this.props;
+    let {options} = this.state;
+    options[index] = item;
+    this.setState({
+      options
+    }, ()=> {
+        updateOptions(options)
+    })
+  }
+
+
+  render(){
+    let { options } = this.state;
+    return(
+      <div>
+
+        {
+          options.map((option,index) => {
+            return(
+              <QuestionOption option={option} index={index} key={index} setUpdate={this.getValue}/>
+            )
+          })
+        }
+
+        <button className={`button tiny`} onClick={this.addNewOption}> Add Option</button>
+      </div>
+    );
+  }
+}
+
 class QuestionElement extends Component{
   constructor(props){
     super(props)
@@ -31,9 +109,6 @@ class QuestionElement extends Component{
 
 
   updateType = (e) => {
-    console.log(e)
-    console.log(e.target)
-    console.log(e.target.value)
     let {item} = this.state;
     item.type = e.target.value;
     this.setState({
@@ -41,9 +116,19 @@ class QuestionElement extends Component{
     }, () => {
       this.triggerUpdate(this.state.item)
     })
-  }
+  };
+
+  updateOptions = (options) => {
+    console.log('GETTING');
+    console.log(options)
+    let {item} = this.state;
+    item['options'] = options;
+    this.setState({item},()=>{
+      this.triggerUpdate(this.state.item)
+    })
+  };
   render(){
-    let {index, question, type} = this.state.item;
+    let {index, question, type, options} = this.state.item;
     return(
       <div>
         <div>{index}</div>
@@ -61,13 +146,16 @@ class QuestionElement extends Component{
             <option value="dropdown">Dropdown</option>
           </select>
         </div>
+        { (type!=='' && type!=='text' && type!=='textarea') ? <QuestionOptions
+          options={options}
+          type={type} updateOptions={this.updateOptions}/> :'' }
       </div>
     )
   }
 }
 
 
-class ShoeQuestions extends Component{
+class ShowQuestions extends Component{
   constructor(props){
     super(props)
   }
@@ -80,7 +168,7 @@ class ShoeQuestions extends Component{
         {
           questions.map((item,index) => {
             return(
-              <div>
+              <div key={index}>
                 {JSON.stringify(item)}
               </div>
             )
@@ -113,7 +201,7 @@ class SurveyCreate extends Component{
     questions.push({
       question:'',
       type:'',
-      answer:''
+      options:''
     });
     this.setState({questions});
     console.log('Added question')
@@ -143,7 +231,7 @@ class SurveyCreate extends Component{
 
           <div className="clearfix"></div>
           <hr/>
-          <ShoeQuestions questions={questions}/>
+          <ShowQuestions questions={questions}/>
           <button type={`submit`} className={`button primary`}>Save</button>
           <button type={`reset`} className={`button secondary`}>Cancel</button>
         </form>
