@@ -91,11 +91,8 @@ class QuestionElement extends Component{
   }
 
   updateQuestion = (e) => {
-
     let {item} = this.state;
-
     item.question = e.target.value
-
     this.setState({
       item
     }, () => {
@@ -106,6 +103,7 @@ class QuestionElement extends Component{
 
   triggerUpdate = (item) => {
     let {index,updateValue} = this.props;
+    item['id'] = index;
     updateValue(index, item)
   }
 
