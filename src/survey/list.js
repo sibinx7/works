@@ -8,7 +8,9 @@ import {withRouter} from 'react-router'
 
 const EmptyList = () => {
   return (<tbody><tr>
-    <td colSpan={4}>Nothing found...</td>
+    <td colSpan={4}>Nothing found... <Link to={`/surveys/create`}>
+      <span>+ Create</span>
+    </Link></td>
   </tr></tbody>)
 }
 
