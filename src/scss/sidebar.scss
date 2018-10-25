@@ -1,0 +1,36 @@
+aside {
+    -webkit-flex: 0 0 260px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 260px;
+    max-width: 260px;
+    background: #367CFF;
+    height: 100vh;
+    position: fixed;
+    z-index: 15;
+    left: -260px;
+    transition: all 0.3s ease 0.03s;
+    border-right: 1px solid darken(#367CFF,10%);
+    &.aside__open{
+      transition: all 0.3s ease 0.03s;
+      left: 0;
+      .aside__close{
+        display: block;
+      }
+    }
+
+  .aside__close{
+    position: absolute;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    background: #367CFF;
+    display: none;
+    color: #fff;
+    right: -36px;
+    padding-top: 7px;
+    border-left: 1px solid darken(#367CFF,5%)
+  }
+}
+
+
