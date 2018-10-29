@@ -14,10 +14,7 @@ export default class Sidebar extends Component{
   }
 
   componentDidMount(){
-    let $,jquery;
-    const Tooltip = window.Tooltip || {};
-    $ = jquery = window.$ || {};
-
+  
     const {history, closeSidebarAction,rsidebar} = this.props;
     /* Listen URL change */
 

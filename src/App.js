@@ -17,10 +17,8 @@ import Footer from "./components/Footer";
 
 
 
-window.jQuery = window.$ = require("jquery");
-require( "./vendors/morphext.min.js");
-require("./vendors/tooltip.min.js");
-require("./vendors/wodry.min.js")
+
+
 
 
 class App extends Component {
@@ -28,7 +26,8 @@ class App extends Component {
     super(props)
   }
   componentDidMount(){
-
+		
+			
   }
     render() {
         return (

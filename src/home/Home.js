@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
-import $ from "jquery";
+
 // import  '@fortawesome/fontawesome';
 import '@fortawesome/fontawesome-free'
+
+import $ from "jquery";
+import * as Morphext from "morphext/dist/morphext.min";
+import * as wordy from "wodry.js/dist/wodry.min";
+import * as tooltip from "tooltip.js/dist/umd//tooltip.min"
 
 
 class Home extends Component{

@@ -141,7 +141,8 @@ module.exports = {
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      'react-native': 'react-native-web',
+			'react-native': 'react-native-web',
+			'vendors': path.resolve(__dirname, "src/vendors")
     },
     plugins: [
       // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -373,7 +374,15 @@ module.exports = {
     new ManifestPlugin({
       fileName: 'asset-manifest.json',
       publicPath: publicPath,
-    })
+		}),
+		new webpack.ProvidePlugin({
+      $: 'jquery',
+			jQuery: 'jquery',		
+			API_URL: JSON.stringify("http://7chip.local/api")
+		}),
+		new webpack.DefinePlugin({
+			API_URL: JSON.stringify("http://7chip.local/api")
+		})
   ],
 
   // Some libraries import Node modules but don't use them in the browser.

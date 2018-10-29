@@ -107,9 +107,6 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the app code.
-  noParse:[
-    /[\/\\]vendors[\/\\]jquery-3.2.1.min\/.js$/
-  ],
   entry: [paths.appIndexJs],
   output: {
     // The build folder.
@@ -496,8 +493,12 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       $: 'jquery',
-      jQuery: 'jquery'
-    })
+			jQuery: 'jquery',
+			API_URL: JSON.stringify("http://7chip.com/api")
+		}),
+		new webpack.DefinePlugin({
+			API_URL: JSON.stringify("http://7chip.com/api")
+		})
   ].filter(Boolean),
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

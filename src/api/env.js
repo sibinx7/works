@@ -1,4 +1,5 @@
-const API_URL= process.env.NODE_ENV==='production'? 'http://7chip.com/api':'http://7chip.local/api';
+debugger 
+let API_URL = API_URL || window.API_URL;
 const settings = {
   API_URL,
   PORTFOLIO_URL: `${API_URL}/world/websites`
