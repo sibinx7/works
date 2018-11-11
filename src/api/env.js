@@ -1,12 +1,10 @@
 let hostname = window.location.hostname
-let API_URL = "http://7chip.local";
+let API_URL = "http://7chip.local:8080";
 
 if(hostname === "works.7chip.com"){
   API_URL = "http://7chip.com";
 }
 
-console.log(API_URL);
-console.log("HOST NAME")
 const settings = {
   API_URL,
   PORTFOLIO_URL: `${API_URL}/api/world/websites`

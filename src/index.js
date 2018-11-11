@@ -16,6 +16,20 @@ import commonReducers from './reducers'
 
 import {Provider} from 'react-redux'
 
+
+import ApolloClient from "apollo-boost";
+import {  ApolloProvider  } from "react-apollo";
+
+import settings from "./api/env"
+
+const API_URL = settings.API_URL;
+
+
+const client = new ApolloClient({
+  uri: `${API_URL}/graphql`
+})
+
+
 const store = createStore(commonReducers, applyMiddleware(thunk, logger));
 
 
@@ -25,7 +39,9 @@ const store = createStore(commonReducers, applyMiddleware(thunk, logger));
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App/>
+      <ApolloProvider client={client}>
+        <App/>
+      </ApolloProvider>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root'));

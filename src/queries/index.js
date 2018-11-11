@@ -26,5 +26,14 @@ export const UPDATE_LIKE = gql`
       like 
     }
   }
-
 ` 
+
+export const SEND_MESSAGE = gql`
+  mutation sendMessgae($message: String!){
+    sendMessage(message: $message){
+      name,
+      email,
+      message 
+    }
+  }
+`
