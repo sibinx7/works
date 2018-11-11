@@ -24,8 +24,6 @@ This website use React, React Router 4, Helmet and other useful React related pl
 - Theme Development 
 
 
-
-
 #### Contact 
 
 If you need any service from me, Please check [7chip.com](http://www.7chip.com) or send mail to `sibinx7@outlook.com`
@@ -35,3 +33,8 @@ http://iqonicthemes.com/themes/profyl/intro/intro.html
 https://www.areatresworkplace.com/home
 
 
+
+#### Learning 
+
+- [X] Learn GraphQL 
+- [X] Learn Rematch
