@@ -12,6 +12,7 @@ import Home from './home/Home';
 import Portfolio from './home/Portfolio';
 import Services from './home/Services';
 import About from './home/About';
+import Contact from "./home/Contact.jsx"
 import Footer from "./components/Footer";
 /* End Pages */
 
@@ -40,6 +41,7 @@ class App extends Component {
                   <Route path='/about' component={About}/>
                   <Route path='/portfolio' component={Portfolio}/>
                   <Route path='/services' component={Services}/>
+                  <Route path="/contact" component={Contact}/>
                 </div>
               </div>
               <Footer/>

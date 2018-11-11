@@ -214,6 +214,11 @@ module.exports = {
               ),
               
               plugins: [
+                // "@babel/plugin-syntax-decorators",
+                [
+                  "@babel/plugin-proposal-decorators",
+                  { "legacy": true }
+                ],
                 [
                   require.resolve('babel-plugin-named-asset-import'),
                   {
@@ -223,12 +228,8 @@ module.exports = {
                       },
                     },
                   },
-                ],
-                "@babel/plugin-proposal-class-properties",
-                [
-                  "@babel/plugin-proposal-decorators",
-                  { "legacy": true }
-                ]
+                ], 
+                "@babel/plugin-proposal-class-properties"  
                 
               ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).

@@ -296,11 +296,12 @@ module.exports = {
                     },
                   },
                 ],
-                "@babel/plugin-proposal-class-properties",
                 [
                   "@babel/plugin-proposal-decorators",
                   { "legacy": true }
-                ]
+                ],
+                "@babel/plugin-proposal-class-properties",
+                
               ],
               cacheDirectory: true,
               // Save disk space when time isn't as important

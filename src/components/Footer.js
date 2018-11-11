@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {  Link } from "react-router-dom";
 
 import '@fortawesome/fontawesome-free';
 
@@ -76,7 +77,7 @@ export default class Footer extends Component{
                           <a href="">About me</a>
                         </li>
                         <li>
-                          <a href="">Contact</a>
+                          <Link to="contact">Contact</Link>
                         </li>
                         <li>
                           <a href="">WordPress</a>
