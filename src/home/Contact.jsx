@@ -30,7 +30,11 @@ export class ContactForm extends Component{
                 [item.name]: item.value
             }
         });
-        sendMessage(formData);
+        sendMessage({
+            variables:{
+                ...formData
+            }
+        });
         console.log(formData);
         return false;
     }
