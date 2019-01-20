@@ -4,18 +4,29 @@ import {Link} from 'react-router-dom'
 // import  '@fortawesome/fontawesome';
 import '@fortawesome/fontawesome-free'
 
-import $ from "jquery";
-import * as Morphext from "morphext/dist/morphext.min";
-import * as wordy from "wodry.js/dist/wodry.min";
-import * as tooltip from "tooltip.js/dist/umd//tooltip.min"
+
+const jQuery = require("jquery/dist/jquery");
+const $ = jQuery;
+window.$ = window.jQuery = $;
+
+const  Morphext = require("morphext/dist/morphext.min")
+const wordy =  require("wodry.js/dist/wodry.min");
+const tooltip = require("tooltip.js/dist/umd//tooltip.min")
+
+
 
 
 class Home extends Component{
 
+	state = {
+		error: false 
+	}
+
   constructor(){
     super();
     this.skills = [];
-    this.develop = [];
+		this.develop = [];
+		
   }
   componentWillMount(){
     this.skills = [
@@ -57,8 +68,25 @@ class Home extends Component{
       /* End Text animation */
 
     })
-  }
+	}
+	
+	componentDidCatch(){
+		this.setState({
+			error: 1 
+		})
+	}
+
   render(){
+
+		const {	error } = this.state;
+
+		if(error){
+			return <div className="card">
+				<div className="card-body">
+					Unknown errors
+				</div>
+			</div>
+		}
 
     return <div className="main-content home">
       <div className="home__welcome">
@@ -90,7 +118,7 @@ class Home extends Component{
       </section>
       <section className={`home__skills`}>
         <div className="container">
-          <h2 className='text-uppercase text-uppercase section__title'>Skills</h2>
+          <h2 className='text-uppercase text-uppercase section__title text-center'>Skills</h2>
           <ul className="skill__list">
             {
               this.skills.map( (item, index) => <li key={index}>

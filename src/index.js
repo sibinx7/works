@@ -22,6 +22,8 @@ import {  ApolloProvider  } from "react-apollo";
 
 import settings from "./api/env"
 
+window.$ = window.jQuery = require("jquery")
+
 const API_URL = settings.API_URL;
 
 

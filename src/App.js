@@ -7,6 +7,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 
+import * as jQuery from "jquery"
+
 /* Pages */
 import Home from './home/Home';
 import Portfolio from './home/Portfolio';
@@ -18,23 +20,35 @@ import Footer from "./components/Footer";
 
 
 
-
-
-
-
 class App extends Component {
+	state = {
+		error:false 
+	}
   constructor(props){
     super(props)
   }
   componentDidMount(){
 		
 			
-  }
+	}
+	
+	componentDidCatch(e){		
+		this.setState({error: true})
+	}
+
     render() {
+			const {	error } = this.state;
+			if(error){
+				return <div className="card">
+					<div className="card-body">
+						<p>Unknown error</p>
+					</div>
+				</div>
+			}
         return (
           <Router>
             <main className="main">
-              <Header/>
+              {/* <Header/> */}
               <div className='page'>
                 <div className="content">
                   <Route exact path='/' component={Home}/>

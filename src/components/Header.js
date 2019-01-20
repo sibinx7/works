@@ -3,7 +3,11 @@ import {Link} from 'react-router-dom';
 import  '@fortawesome/fontawesome-free';
 import {connect} from 'react-redux';
 import {toggleSidebar} from '../actions/index'
-import $ from 'jquery';
+
+
+const $ = window.$;
+const jQuery  = $;
+
 
 
 const mapStateToProps =({rsidebar}) =>{
@@ -12,11 +16,13 @@ const mapStateToProps =({rsidebar}) =>{
 	}
 }
 
-@connect(
-	mapStateToProps
-)
+
 
 class Header extends Component {
+
+	state = {
+		error: false 
+	}
 
   constructor(props){
     super(props)
@@ -43,7 +49,18 @@ class Header extends Component {
     header.removeClass('open-sec-menu');
   };
 
+	componentDidCatch(e){
+		this.setState({error: true})
+	}
+
   render(){
+
+		const {	error } = this.state;
+		
+		if(error){
+			return <p>Unknown error</p>
+		}
+
     return <header className="header">
 			<div className="container">
         <nav className={`main-nav`}>
@@ -105,4 +122,4 @@ class Header extends Component {
 
 
 
-export default Header;
+export default (mapStateToProps)(Header);
