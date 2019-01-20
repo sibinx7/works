@@ -57,7 +57,7 @@ class Header extends Component {
 
 		const {	error } = this.state;
 		
-		if(error){
+		if(!!error){
 			return <p>Unknown error</p>
 		}
 
@@ -120,6 +120,8 @@ class Header extends Component {
   }
 }
 
+// export default Header;
 
+Header = connect(mapStateToProps)(Header)
 
-export default (mapStateToProps)(Header);
+export default Header;

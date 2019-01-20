@@ -38,17 +38,10 @@ class App extends Component {
 
     render() {
 			const {	error } = this.state;
-			if(error){
-				return <div className="card">
-					<div className="card-body">
-						<p>Unknown error</p>
-					</div>
-				</div>
-			}
         return (
           <Router>
             <main className="main">
-              {/* <Header/> */}
+							<Header/>							
               <div className='page'>
                 <div className="content">
                   <Route exact path='/' component={Home}/>
