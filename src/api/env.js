@@ -1,5 +1,5 @@
 let hostname = window.location.hostname
-let API_URL = "http://7chip.local:8080";
+let API_URL = "http://7chip.local";
 
 if(hostname === "works.7chip.com"){
   API_URL = "http://7chip.com";

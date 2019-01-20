@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component, Suspense} from 'react';
 import { connect } from 'react-redux';
 import $ from 'jquery'
 import '@fortawesome/fontawesome-free';
-
+import {	MoonLoader	} from "react-spinners"
+import {	css } from "@rematch/core"
 
 import { fetchProjects } from '../actions/index';
 
@@ -49,6 +50,7 @@ class PortfolioSlice extends Component{
     const bPositionFour = { backgroundPosition: `-${((elementBox)*3)}px 0`};
     const bPositionFive = { backgroundPosition: `-${((elementBox)*4)}px 0`};
     return(
+			<Suspense fallback={<MoonLoader size={120}/>}>
       <div className="slice__wrapper">
         <div className="portfolio__view slice__view">
           <div className="portfolio__back slice__back">
@@ -74,7 +76,8 @@ class PortfolioSlice extends Component{
           </div>
         </div>
       </div>
-    )
+			</Suspense>
+	  )
   }
 }
 
@@ -100,7 +103,9 @@ class Portfolio extends Component{
   render(){
     console.log(this.props);
     const { projects } = this.props;
-    return <div className="portfolio__content">
+    return (
+		<Suspense fallback={<MoonLoader size={120}/>}>
+		<div className="portfolio__content">
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
@@ -121,6 +126,8 @@ class Portfolio extends Component{
         </div>
       </div>
     </div>
+		</Suspense>
+		)
   }
 }
 
