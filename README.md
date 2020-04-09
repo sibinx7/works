@@ -38,3 +38,8 @@ https://www.areatresworkplace.com/home
 
 - [X] Learn GraphQL 
 - [X] Learn Rematch
+
+### React Shared Component for Freelance work
+
+- Common component used in many React JS Projects [works.7chip.com](https://works.7chip.com)
+- Common component used in Angular project will available at [sibin.7chip.com](https://sibin.7chip.com)
